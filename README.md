@@ -3,7 +3,8 @@
 Student Simulator, 2D, mobile app
 
 Вся информация о создании [тут](https://github.com/ISUCT/2-147-January-May-2023/issues/10)
-Дублирование с задач
+
+Дублирование задач
 
 ### Mobile:
 
