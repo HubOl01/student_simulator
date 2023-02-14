@@ -24,13 +24,13 @@ class MyApp extends StatelessWidget {
 }
 
 List _pages = [
+  MainPage(),
   GuidePage(),
   ChatsPage(),
-  MainPage(),
   AnalysisPage(),
   SettingsPage(),
 ];
-int _currentIndex = (_pages.length / 2).round()-1;
+int _currentIndex = 0;
 
 class ButtomBar extends StatefulWidget {
   const ButtomBar({super.key});
@@ -49,6 +49,11 @@ class _ButtomBarState extends State<ButtomBar> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
+              activeIcon: Icon(Icons.home),
+              icon:
+                  Icon(Icons.home, color: Theme.of(context).iconTheme.color),
+              label: "Главная"),
+          BottomNavigationBarItem(
               activeIcon: Icon(Icons.quiz),
               icon: Icon(
                 Icons.quiz,
@@ -60,11 +65,6 @@ class _ButtomBarState extends State<ButtomBar> {
               icon: Icon(Icons.message,
                   color: Theme.of(context).iconTheme.color),
               label: "Чаты"),
-          BottomNavigationBarItem(
-              activeIcon: Icon(Icons.ad_units),
-              icon:
-                  Icon(Icons.ad_units, color: Theme.of(context).iconTheme.color),
-              label: "Главная"),
           BottomNavigationBarItem(
               activeIcon: Icon(Icons.analytics),
               icon:
