@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class GuidePage extends StatelessWidget {
-  const GuidePage({super.key});
+class ForumsPage extends StatelessWidget {
+  const ForumsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("Гайды"),),
+      body: Center(child: Text("Чаты"),),
     );
   }
 }

@@ -1,24 +1,37 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:student_simulator/analysisPage.dart';
-import 'package:student_simulator/chatsPage.dart';
-import 'package:student_simulator/guidePage.dart';
-import 'package:student_simulator/settings.dart';
+import 'package:student_simulator/forumsPage.dart';
 
+import 'package:student_simulator/settings.dart';
+import 'package:provider/provider.dart';
+import 'Styles/Themes.dart';
+import 'guide/guidePage.dart';
 import 'main/mainPage.dart';
 
-void main() {
+Future main() async{
+  // operation();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  static final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Student Sumilator',
-      home: ButtomBar(),
+    return ChangeNotifierProvider(
+       create: (context) => ThemeProvider(),
+        builder: (context, child) =>
+      MaterialApp(
+        themeMode: Provider.of<ThemeProvider>(context).themeMode,
+              theme: Themes.light,
+              darkTheme: Themes.dark,
+        debugShowCheckedModeBanner: false,
+        title: 'Student Sumilator',
+        home: ButtomBar(),
+      ),
     );
   }
 }
@@ -26,11 +39,11 @@ class MyApp extends StatelessWidget {
 List _pages = [
   MainPage(),
   GuidePage(),
-  ChatsPage(),
+  ForumsPage(),
   AnalysisPage(),
   SettingsPage(),
 ];
-int _currentIndex = 0;
+int _currentIndex = 1;
 
 class ButtomBar extends StatefulWidget {
   const ButtomBar({super.key});
@@ -64,7 +77,7 @@ class _ButtomBarState extends State<ButtomBar> {
               activeIcon: Icon(Icons.message),
               icon: Icon(Icons.message,
                   color: Theme.of(context).iconTheme.color),
-              label: "Чаты"),
+              label: "Форумы"),
           BottomNavigationBarItem(
               activeIcon: Icon(Icons.analytics),
               icon:
